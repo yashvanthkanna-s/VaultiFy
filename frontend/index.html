@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vaultify — Secure cloud file storage for you and your team. Upload, store, and access your files anywhere.">
+    <title>Vaultify — Secure. Store. Share.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <rect x="2" y="4" width="20" height="16" rx="3" fill="#2563EB"/>
+                        <path d="M7 9h10M7 12h7" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                        <circle cx="18" cy="16" r="4" fill="#1D4ED8"/>
+                        <path d="M16.5 16l1 1 2-2" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="logo-text">Vaultify</span>
+            </a>
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-ghost" id="nav-login">Login</a>
+                <a href="signup.html" class="btn btn-primary" id="nav-signup">Create Account</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-badge">✦ Simple & Secure File Storage</div>
+            <h1 class="hero-title">
+                Your files,<br>
+                <span class="hero-title-accent">safe and accessible.</span>
+            </h1>
+            <p class="hero-subtitle">
+                Vaultify gives you a clean, secure personal vault to store, access,
+                and manage your important files — from anywhere, any time.
+            </p>
+            <div class="hero-actions">
+                <a href="signup.html" class="btn btn-primary btn-lg" id="hero-get-started">Get Started Free</a>
+                <a href="login.html" class="btn btn-outline btn-lg" id="hero-login">Sign In</a>
+            </div>
+            <p class="hero-note">No credit card required &bull; Up to 500 MB free storage</p>
+        </div>
+    </section>
+
+    <!-- ========== FEATURES ========== -->
+    <section class="features">
+        <div class="features-container">
+            <div class="section-label">Why Vaultify</div>
+            <h2 class="section-title">Everything you need, nothing you don't.</h2>
+            <p class="section-subtitle">A minimal, focused tool built for simplicity and security.</p>
+
+            <div class="features-grid">
+
+                <div class="feature-card" id="feature-secure">
+                    <div class="feature-icon feature-icon--blue">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2L4 6v6c0 5.5 3.5 10.7 8 12 4.5-1.3 8-6.5 8-12V6L12 2z" stroke="#2563EB" stroke-width="2" stroke-linejoin="round"/>
+                            <path d="M9 12l2 2 4-4" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Secure Storage</h3>
+                    <p class="feature-desc">
+                        Your files are protected with JWT-based authentication and BCrypt password hashing.
+                        Only you can access your vault.
+                    </p>
+                </div>
+
+                <div class="feature-card" id="feature-upload">
+                    <div class="feature-icon feature-icon--green">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" stroke="#22C55E" stroke-width="2" stroke-linecap="round"/>
+                            <polyline points="17,8 12,3 7,8" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <line x1="12" y1="3" x2="12" y2="15" stroke="#22C55E" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Easy Upload</h3>
+                    <p class="feature-desc">
+                        Upload PDFs, images, Word documents, and ZIP files instantly.
+                        Files up to 50 MB with a 500 MB personal storage quota.
+                    </p>
+                </div>
+
+                <div class="feature-card" id="feature-access">
+                    <div class="feature-icon feature-icon--purple">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="10" stroke="#7C3AED" stroke-width="2"/>
+                            <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke="#7C3AED" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Access Anywhere</h3>
+                    <p class="feature-desc">
+                        Log in from any device, download your files instantly.
+                        Your vault is always with you, available on any screen size.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SUPPORTED FILES ========== -->
+    <section class="file-types">
+        <div class="file-types-container">
+            <div class="section-label">Supported File Types</div>
+            <h2 class="section-title">Store what matters most.</h2>
+            <div class="file-types-grid">
+                <div class="file-type-badge">
+                    <span class="file-type-icon">📄</span>
+                    <span>PDF</span>
+                </div>
+                <div class="file-type-badge">
+                    <span class="file-type-icon">📝</span>
+                    <span>DOCX</span>
+                </div>
+                <div class="file-type-badge">
+                    <span class="file-type-icon">🖼️</span>
+                    <span>PNG</span>
+                </div>
+                <div class="file-type-badge">
+                    <span class="file-type-icon">📸</span>
+                    <span>JPG / JPEG</span>
+                </div>
+                <div class="file-type-badge">
+                    <span class="file-type-icon">📦</span>
+                    <span>ZIP</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CTA ========== -->
+    <section class="cta-section">
+        <div class="cta-container">
+            <h2 class="cta-title">Ready to secure your files?</h2>
+            <p class="cta-subtitle">Create your free account in seconds. No credit card needed.</p>
+            <a href="signup.html" class="btn btn-primary btn-lg" id="cta-signup">Create Free Account</a>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="footer-container">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-icon logo-icon--sm">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <rect x="2" y="4" width="20" height="16" rx="3" fill="#2563EB"/>
+                        <path d="M7 9h10M7 12h7" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <span class="logo-text">Vaultify</span>
+            </a>
+            <p class="footer-copy">&copy; 2024 Vaultify. Secure. Store. Share.</p>
+        </div>
+    </footer>
+
+    <script>
+        // If already logged in, redirect to dashboard
+        if (localStorage.getItem('vaultify_token')) {
+            // Don't auto-redirect from landing page — let user see it
+        }
+    </script>
+
+</body>
+</html>

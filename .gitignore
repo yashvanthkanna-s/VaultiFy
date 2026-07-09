@@ -1,0 +1,41 @@
+# =============================================
+# Vaultify — .gitignore
+# =============================================
+
+# Maven build output
+backend/target/
+backend/*.class
+
+# H2 database files (auto-generated at runtime)
+backend/vaultify-db.mv.db
+backend/vaultify-db.trace.db
+
+# Uploaded files (not tracked in git)
+backend/uploads/
+
+# IDE files
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+*.code-workspace
+.project
+.classpath
+.settings/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Node (if added later)
+node_modules/
+
+# Environment / secrets
+.env
+.env.local
