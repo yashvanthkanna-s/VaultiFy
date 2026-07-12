@@ -521,7 +521,8 @@ img, svg {
 }
 
 .auth-form-header {
-    margin-bottom: 36px;
+    margin-bottom: 32px;
+    text-align: center;
 }
 
 .auth-form-title {
