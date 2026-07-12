@@ -95,6 +95,7 @@ function validateForm() {
         valid = false;
     } else if (password !== confirmPwd) {
         showFieldError('confirmPassword', 'Passwords do not match');
+        console.error(`Mismatch: [${password}] vs [${confirmPwd}]`);
         valid = false;
     }
 
