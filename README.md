@@ -1,182 +1,47 @@
 # Vaultify
 
-> **Secure. Store. Share.**
+Vaultify is a personal file storage app I built as a clean, lightweight alternative to heavy cloud storage solutions. It's designed to securely store and share files for a small group of friends or personal use.
 
-A clean, modern cloud-based personal file storage application built with Java Spring Boot and Vanilla JavaScript.
+The goal wasn't to build a Google Drive clone, but rather a solid MVP that demonstrates clean layered architecture and is ready to scale up to AWS (S3 and DynamoDB) later on.
 
----
+## What it does
+- User authentication with JWT and BCrypt password hashing.
+- Upload, download, and delete files (PDFs, Images, ZIPs, Docs).
+- Enforces user quotas (max 500MB per user, max 50MB per file).
+- Dashboard and profile stats to track usage.
 
-## 🚀 Getting Started
+## Tech Stack
+I kept things simple and avoided heavy frontend frameworks.
+- **Backend:** Java 17, Spring Boot 3.2
+- **Database:** H2 (file-based)
+- **Frontend:** Vanilla HTML, CSS, JavaScript
+- **Storage:** Local filesystem (for now)
 
-### Prerequisites
+## How to run it locally
 
-- Java 17+
-- Maven 3.8+
-- A modern web browser
-
-### Run the Backend
-
+### 1. Start the Backend
+Make sure you have Java 17 and Maven installed.
 ```bash
 cd backend
 mvn spring-boot:run
 ```
+The API runs on `http://localhost:8080`.
 
-The server starts at: **http://localhost:8080**
-
-### Open the Frontend
-
-Open `frontend/index.html` in your browser, or use a local server:
-
+### 2. Start the Frontend
+You can just open `frontend/index.html` in your browser. Alternatively, run a quick local server so everything loads cleanly:
 ```bash
-# Using Python
 cd frontend
 python -m http.server 3000
-
-# Then open: http://localhost:3000
 ```
+Then visit `http://localhost:3000`.
 
----
+## Project Structure Highlights
+- `backend/src/main/java/com/vaultify/storage/StorageService.java`: This is an interface I created to handle file operations. Right now, it's implemented by `LocalStorageService`, but it's designed so I can just write an `S3StorageService` later and swap it out without touching the controllers.
+- `frontend/css/`: Built a small custom design system using CSS variables. No Tailwind or Bootstrap here.
+- `frontend/js/upload.js`: Handles multipart file uploads using `XMLHttpRequest` so we get real-time upload progress bars on the frontend.
 
-## 📁 Project Structure
-
-```
-VaultiFy/
-├── frontend/
-│   ├── index.html          ← Landing page
-│   ├── login.html          ← Login page
-│   ├── signup.html         ← Signup page
-│   ├── dashboard.html      ← Dashboard (files)
-│   ├── profile.html        ← Profile & storage stats
-│   ├── css/
-│   │   ├── style.css       ← Global styles (landing, auth)
-│   │   └── dashboard.css   ← Dashboard & profile styles
-│   └── js/
-│       ├── login.js        ← Login form + API
-│       ├── signup.js       ← Signup form + API
-│       ├── dashboard.js    ← File listing, delete, profile
-│       └── upload.js       ← Upload with XHR progress
-│
-├── backend/
-│   ├── pom.xml
-│   └── src/main/
-│       ├── java/com/vaultify/
-│       │   ├── VaultifyApplication.java
-│       │   ├── controller/
-│       │   │   ├── AuthController.java
-│       │   │   └── FileController.java
-│       │   ├── service/
-│       │   │   ├── AuthService.java
-│       │   │   └── FileService.java
-│       │   ├── repository/
-│       │   │   ├── UserRepository.java
-│       │   │   └── FileRepository.java
-│       │   ├── model/
-│       │   │   ├── User.java
-│       │   │   └── FileMetadata.java
-│       │   ├── dto/
-│       │   │   ├── SignupRequest.java
-│       │   │   ├── LoginRequest.java
-│       │   │   ├── AuthResponse.java
-│       │   │   ├── FileMetadataResponse.java
-│       │   │   ├── UserProfileResponse.java
-│       │   │   └── ApiResponse.java
-│       │   ├── storage/
-│       │   │   ├── StorageService.java   ← Interface (swap for S3)
-│       │   │   └── LocalStorageService.java
-│       │   ├── config/
-│       │   │   ├── JwtUtil.java
-│       │   │   ├── JwtAuthFilter.java
-│       │   │   └── SecurityConfig.java
-│       │   └── exception/
-│       │       ├── VaultifyException.java
-│       │       └── GlobalExceptionHandler.java
-│       └── resources/
-│           └── application.properties
-│
-└── README.md
-```
-
----
-
-## 🔧 API Endpoints
-
-| Method | Endpoint | Auth | Description |
-|--------|----------|------|-------------|
-| POST | `/api/auth/signup` | No | Register new account |
-| POST | `/api/auth/login` | No | Login, returns JWT |
-| GET | `/api/auth/me` | Yes | Get profile & storage info |
-| POST | `/api/files/upload` | Yes | Upload a file |
-| GET | `/api/files` | Yes | List all files |
-| GET | `/api/files/{id}/download` | Yes | Download a file |
-| DELETE | `/api/files/{id}` | Yes | Delete a file |
-
----
-
-## ⚙️ Configuration
-
-Edit `backend/src/main/resources/application.properties`:
-
-```properties
-# Storage directory
-vaultify.storage.location=./uploads
-
-# JWT expiry (24 hours)
-jwt.expiration=86400000
-
-# Max file size
-spring.servlet.multipart.max-file-size=50MB
-```
-
----
-
-## 📋 Supported File Types
-
-| Type | Extension |
-|------|-----------|
-| PDF Document | `.pdf` |
-| Word Document | `.docx` |
-| ZIP Archive | `.zip` |
-| PNG Image | `.png` |
-| JPEG Image | `.jpg`, `.jpeg` |
-
-**Limits:**
-- Maximum file size: **50 MB**
-- Maximum storage per user: **500 MB**
-- Maximum users: **10**
-
----
-
-## 🔒 Security
-
-- Passwords hashed with **BCrypt**
-- Authentication via **JWT tokens** (24h expiry)
-- All file endpoints require a valid token
-- File ownership verified on every download/delete
-
----
-
-## 🗺️ AWS Roadmap
-
-| Version | Upgrade |
-|---------|---------|
-| v1.0 | ✅ Local storage + H2 Database |
-| v2.0 | Replace `LocalStorageService` → `S3StorageService` |
-| v2.1 | Replace H2 → Amazon DynamoDB |
-| v3.0 | Deploy to Amazon EC2 |
-
-To swap to S3: implement `StorageService` interface in a new `S3StorageService` class. No changes needed in controllers or services.
-
----
-
-## 🛠️ Tech Stack
-
-- **Frontend:** HTML5, CSS3, Vanilla JavaScript
-- **Backend:** Java 17, Spring Boot 3.2
-- **Database:** H2 (file-based, persistent)
-- **Auth:** Spring Security + JWT (JJWT 0.12)
-- **Password:** BCrypt
-- **Storage:** Local filesystem (`./uploads/`)
-
----
-
-*Built with ❤️ — Vaultify v1.0*
+## Future Plans (AWS Migration)
+The next steps for this project are to move it to the cloud:
+1. Swap the `LocalStorageService` for Amazon S3.
+2. Swap the H2 database for Amazon DynamoDB (the repository interfaces are already set up for this).
+3. Deploy the Spring Boot app to EC2 or Elastic Beanstalk.
